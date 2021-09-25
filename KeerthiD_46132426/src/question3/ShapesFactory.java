@@ -18,7 +18,6 @@ public class ShapesFactory {
 			System.out.println("Enter the radius");
 			double radius = sc.nextDouble();
 			return new Circle(radius);
-			break;
 		case 1:
 			System.out.println("Enter the length");
 			double length = sc.nextDouble();
