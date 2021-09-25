@@ -1,30 +1,57 @@
 package question3;
 
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.Iterator;
+import java.util.List;
 
 public class ShapesFactory {
 
 	ArrayList<Shape> slist = new ArrayList<>();
-	
-	public static Shape ShapesFactory()
+
+	public ShapesFactory()
+	{	}
+	 public void addShape(Shape s)
+     {
+           slist.add(s);
+      }
+	public List<Circle> getCircles()
 	{
-		Scanner sc = new Scanner(System.in);
-		int n = new Random().nextInt();
-		switch(n%2)
+		ArrayList<Circle> clist=new ArrayList<>();
+		Iterator<Shape> iter= slist.iterator();
+		while (iter.hasNext()) 
 		{
-		case 0:
-			System.out.println("Enter the radius");
-			double radius = sc.nextDouble();
-			return new Circle(radius);
-		case 1:
-			System.out.println("Enter the length");
-			double length = sc.nextDouble();
-			System.out.println("Enter the breadth");
-			double breadth = sc.nextDouble();
-			return new Rectangale(length,breadth);
-			break;
+			Shape temp=iter.next();
+			if(temp.getClass().getName()=="Circle")
+			{
+				clist.add((Circle) temp);
+			}
+
 		}
+		return clist;
 	}
+	
+	public List<Rectangale> getRectangles()
+	{
+		ArrayList<Rectangale> rlist=new ArrayList<>();
+		Iterator<Shape> iter= slist.iterator();
+		while (iter.hasNext()) 
+		{
+			Shape temp=iter.next();
+			if(temp.getClass().getName()=="Rectangle")
+			{
+				rlist.add((Rectangale)temp);
+			}
+		}
+		return rlist;
+	}
+
+	public boolean  deleteShape(Shape s)
+    {
+              if(slist.contains(s))
+              {
+                 slist.remove(slist.indexOf(s)); 
+              }
+              return slist.contains(s);
+    }
+
 }
